@@ -86,6 +86,7 @@ namespace Calculator1
             {
                 function = "+";
                 lblEquation.Text = txtCurrent.Text + function;
+                txtCurrent.Clear();
             }
             else
             {
@@ -99,6 +100,7 @@ namespace Calculator1
             {
                 function = "-";
                 lblEquation.Text = txtCurrent.Text + function;
+                txtCurrent.Clear();
             }
             else
             {
@@ -112,6 +114,7 @@ namespace Calculator1
             {
                 function = "*";
                 lblEquation.Text = txtCurrent.Text + function;
+                txtCurrent.Clear();
             }
             else
             {
@@ -125,6 +128,7 @@ namespace Calculator1
             {
                 function = "/";
                 lblEquation.Text = txtCurrent.Text + function;
+                txtCurrent.Clear();
             }
             else
             {

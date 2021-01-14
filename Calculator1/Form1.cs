@@ -12,8 +12,11 @@ namespace Calculator1
 {
     public partial class Form1 : Form
     {
+       
         double first, second, answer;
         string function;
+        Class1 head;
+        Class1 current;
 
         public Form1()
         {
@@ -23,6 +26,8 @@ namespace Calculator1
         private void Form1_Load(object sender, EventArgs e)
         {
             lblEquation.Text = "";
+            head = null;
+            current = head;
         }
 
         private void btn1_Click(object sender, EventArgs e)
@@ -82,59 +87,32 @@ namespace Calculator1
         
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if(double.TryParse(txtCurrent.Text, out first))
-            {
-                function = "+";
-                lblEquation.Text = txtCurrent.Text + function;
-                txtCurrent.Clear();
-            }
-            else
-            {
-                txtCurrent.Text = "ERROR";
-            }
+            AddToList("+");
+            PrintList();
+            txtCurrent.Clear();
         }
 
         private void btnSubtract_Click(object sender, EventArgs e)
         {
-            if (double.TryParse(txtCurrent.Text, out first))
-            {
-                function = "-";
-                lblEquation.Text = txtCurrent.Text + function;
-                txtCurrent.Clear();
-            }
-            else
-            {
-                txtCurrent.Text = "ERROR";
-            }
+            AddToList("-");
+            PrintList();
+            txtCurrent.Clear();
         }
 
         private void btnMultiply_Click(object sender, EventArgs e)
         {
-            if (double.TryParse(txtCurrent.Text, out first))
-            {
-                function = "*";
-                lblEquation.Text = txtCurrent.Text + function;
-                txtCurrent.Clear();
-            }
-            else
-            {
-                txtCurrent.Text = "ERROR";
-            }
+            AddToList("*");
+            PrintList();
+            txtCurrent.Clear();
         }
         
         private void btnDivide_Click(object sender, EventArgs e)
         {
-            if (double.TryParse(txtCurrent.Text, out first))
-            {
-                function = "/";
-                lblEquation.Text = txtCurrent.Text + function;
-                txtCurrent.Clear();
-            }
-            else
-            {
-                txtCurrent.Text = "ERROR";
-            }    
+            AddToList("/");
+            PrintList();
+            txtCurrent.Clear();
         }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtCurrent.Clear();
@@ -173,5 +151,68 @@ namespace Calculator1
                 lblEquation.Text = "";
             }
         }
-    }
+
+        private void AddToList(string s)
+        {
+            if (Double.TryParse(txtCurrent.Text, out first))
+            {
+                if (head == null)
+                {
+                    head = new Class1();
+                    current = head;
+                    current.number = first;
+                    current.n = true;
+                    if (s != "=")
+                    {
+                        current.next = new Class1();
+                        current = current.next;
+                        current.symbol = s;
+                        current.n = false;
+                        current.next = null;
+                    }
+                }
+                else
+                {
+                    current.next = new Class1();
+                    current = current.next;
+                    current.number = first;
+                    current.n = true;
+                    if (s != "=")
+                    {
+                        current.next = new Class1();
+                        current = current.next;
+                        current.symbol = s;
+                        current.n = false;
+                        current.next = null;
+                    }
+                }
+            }
+            else
+            {
+                lblEquation.Text = "ERROR";
+                txtCurrent.Clear();
+            }
+        }
+
+        private void PrintList()
+        {
+            Class1 print = head;
+            string temp = "";
+            while(print != null)
+            {
+                if (print.n)
+                { 
+                    temp = temp + print.number;
+                }
+                else
+                {
+                    temp = temp + print.symbol;
+                }
+
+                print = print.next;
+            }
+
+            lblEquation.Text = temp;
+        }
+    }        
 }

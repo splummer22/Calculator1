@@ -113,8 +113,15 @@ namespace Calculator1
             txtCurrent.Clear();
         }
 
+        private void btnClearOnly_Click(object sender, EventArgs e)
+        {
+            txtCurrent.Clear();
+        }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
+            head = null;
+            current = null;
             txtCurrent.Clear();
             first = second = answer = 0;
             lblEquation.Text = "";
@@ -125,23 +132,7 @@ namespace Calculator1
         {
             if (double.TryParse(txtCurrent.Text, out second)) 
             {
-                if (function == "+")
-                {
-                    answer = first + second;
-                }
-                else if(function == "-")
-                {
-                    answer = first - second;
-                }
-                else if (function == "/")
-                {
-                    answer = first / second;
-                }
-                else if (function == "*")
-                {
-                    answer = first * second;
-                }
-
+                answer = Calculate();
                 txtCurrent.Text = "" + answer;
                 lblEquation.Text = lblEquation.Text + second + "=";
             }
@@ -150,6 +141,12 @@ namespace Calculator1
                 txtCurrent.Text = "ERROR";
                 lblEquation.Text = "";
             }
+        }
+
+        static double Calculate()
+        {
+            double a = 0;
+            return a;
         }
 
         private void AddToList(string s)
@@ -213,6 +210,6 @@ namespace Calculator1
             }
 
             lblEquation.Text = temp;
-        }//testing...
+        }
     }        
 }

@@ -48,6 +48,7 @@ namespace Calculator1
             this.txtCurrent = new System.Windows.Forms.TextBox();
             this.lblEquation = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnClearOnly = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn1
@@ -255,11 +256,23 @@ namespace Calculator1
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // btnClearOnly
+            // 
+            this.btnClearOnly.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearOnly.Location = new System.Drawing.Point(284, 221);
+            this.btnClearOnly.Name = "btnClearOnly";
+            this.btnClearOnly.Size = new System.Drawing.Size(49, 49);
+            this.btnClearOnly.TabIndex = 19;
+            this.btnClearOnly.Text = "C";
+            this.btnClearOnly.UseVisualStyleBackColor = true;
+            this.btnClearOnly.Click += new System.EventHandler(this.btnClearOnly_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 511);
+            this.ClientSize = new System.Drawing.Size(442, 511);
+            this.Controls.Add(this.btnClearOnly);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.lblEquation);
             this.Controls.Add(this.txtCurrent);
@@ -308,6 +321,7 @@ namespace Calculator1
         private System.Windows.Forms.TextBox txtCurrent;
         private System.Windows.Forms.Label lblEquation;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnClearOnly;
     }
 }
 

@@ -213,6 +213,6 @@ namespace Calculator1
             }
 
             lblEquation.Text = temp;
-        }
+        }//testing...
     }        
 }

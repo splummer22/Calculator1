@@ -143,12 +143,6 @@ namespace Calculator1
             }
         }
 
-        static double Calculate()
-        {
-            double a = 0;
-            return a;
-        }
-
         private void AddToList(string s)
         {
             if (Double.TryParse(txtCurrent.Text, out first))
@@ -211,5 +205,92 @@ namespace Calculator1
 
             lblEquation.Text = temp;
         }
-    }        
+
+        private double Calculate()
+        {
+            Multiply();
+            Divide();
+            Add();
+            Subtract();
+
+            return head.number;
+        }
+
+        private void Multiply()
+        {
+            Class1 m = head;
+            Class1 temp;
+
+            while(m.next != null)
+            {
+                if(m.next.symbol == "x")
+                {
+                    double answer = m.number * m.next.next.number;
+                    temp = m.next.next.next;
+                    m.next = temp;
+                    m.number = answer;
+                }
+
+                m = m.next;
+            }
+        }
+
+        private void Divide()
+        {
+            Class1 d = head;
+            Class1 temp;
+
+            while(d.next != null)
+            {
+                if(d.next.symbol == "/")
+                {
+                    double answer = d.number / d.next.next.number;
+                    temp = d.next.next.next;
+                    d.next = temp;
+                    d.number = answer;
+                }
+
+                d = d.next;
+            }
+        }
+
+        private void Add()
+        {
+            Class1 a = head;
+            Class1 temp;
+
+            while(a.next != null)
+            {
+                if(a.next.symbol == "+")
+                {
+                    double answer = a.number + a.next.next.number;
+                    temp = a.next.next.next;
+                    a.next = temp;
+                    a.number = answer;
+                }
+
+                a = a.next;
+            }
+        }
+
+        private void Subtract()
+        {
+            Class1 s = head;
+            Class1 temp;
+
+            while(s.next != null)
+            {
+                if(s.next.symbol == "-")
+                {
+                    double answer = s.number - s.next.next.number;
+                    temp = s.next.next.next;
+                    s.next = temp;
+                    s.number = answer;
+                }
+
+                s = s.next;
+            }
+        }
+    }      
+    
 }

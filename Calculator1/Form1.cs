@@ -130,17 +130,12 @@ namespace Calculator1
         
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            if (double.TryParse(txtCurrent.Text, out second)) 
-            {
-                answer = Calculate();
-                txtCurrent.Text = "" + answer;
-                lblEquation.Text = lblEquation.Text + second + "=";
-            }
-            else
-            {
-                txtCurrent.Text = "ERROR";
-                lblEquation.Text = "";
-            }
+            AddToList("=");
+            PrintList();
+            txtCurrent.Clear();
+            double answer = Calculate();
+            txtCurrent.Text = "" + answer;
+
         }
 
         private void AddToList(string s)
@@ -153,14 +148,12 @@ namespace Calculator1
                     current = head;
                     current.number = first;
                     current.n = true;
-                    if (s != "=")
-                    {
-                        current.next = new Class1();
-                        current = current.next;
-                        current.symbol = s;
-                        current.n = false;
-                        current.next = null;
-                    }
+
+                    current.next = new Class1();
+                    current = current.next;
+                    current.symbol = s;
+                    current.n = false;
+                    current.next = null;
                 }
                 else
                 {
@@ -168,14 +161,12 @@ namespace Calculator1
                     current = current.next;
                     current.number = first;
                     current.n = true;
-                    if (s != "=")
-                    {
-                        current.next = new Class1();
-                        current = current.next;
-                        current.symbol = s;
-                        current.n = false;
-                        current.next = null;
-                    }
+
+                    current.next = new Class1();
+                    current = current.next;
+                    current.symbol = s;
+                    current.n = false;
+                    current.next = null;
                 }
             }
             else

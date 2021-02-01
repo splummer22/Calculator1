@@ -212,17 +212,19 @@ namespace Calculator1
             Class1 m = head;
             Class1 temp;
 
-            while(m.next != null)
+            while(m.symbol != "=")
             {
-                if(m.next.symbol == "x")
+                if(m.next.symbol == "*")
                 {
                     double answer = m.number * m.next.next.number;
                     temp = m.next.next.next;
                     m.next = temp;
                     m.number = answer;
                 }
-
-                m = m.next;
+                else
+                {
+                    m = m.next;
+                }
             }
         }
 
@@ -231,26 +233,29 @@ namespace Calculator1
             Class1 d = head;
             Class1 temp;
 
-            while(d.next != null)
+            while(d.symbol != "=")
             {
                 if(d.next.symbol == "/")
                 {
                     double answer = d.number / d.next.next.number;
                     temp = d.next.next.next;
                     d.next = temp;
-                    d.number = answer;
+                    d.number = answer;\
+                    d = d.next;
                 }
 
-                d = d.next;
+                
             }
         }
+
+        
 
         private void Add()
         {
             Class1 a = head;
             Class1 temp;
 
-            while(a.next != null)
+            while(a.symbol != "=")
             {
                 if(a.next.symbol == "+")
                 {
@@ -258,9 +263,8 @@ namespace Calculator1
                     temp = a.next.next.next;
                     a.next = temp;
                     a.number = answer;
-                }
-
-                a = a.next;
+                    a = a.next;
+                } 
             }
         }
 
@@ -269,7 +273,7 @@ namespace Calculator1
             Class1 s = head;
             Class1 temp;
 
-            while(s.next != null)
+            while(s.symbol != "=")
             {
                 if(s.next.symbol == "-")
                 {
@@ -277,11 +281,15 @@ namespace Calculator1
                     temp = s.next.next.next;
                     s.next = temp;
                     s.number = answer;
-                }
-
-                s = s.next;
+                    s = s.next;
+                }   
             }
         }
-    }      
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+    }     
     
 }

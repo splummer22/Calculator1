@@ -28,6 +28,7 @@ namespace Calculator1
             lblEquation.Text = "";
             head = null;
             current = head;
+            this.KeyPreview = true;
         }
 
         private void btn1_Click(object sender, EventArgs e)
@@ -135,7 +136,6 @@ namespace Calculator1
             txtCurrent.Clear();
             double answer = Calculate();
             txtCurrent.Text = "" + answer;
-
         }
 
         private void AddToList(string s)
@@ -207,7 +207,7 @@ namespace Calculator1
             return head.number;
         }
 
-        private void Multiply()
+        private void Multiply()0
         {
             Class1 m = head;
             Class1 temp;
@@ -240,11 +240,12 @@ namespace Calculator1
                     double answer = d.number / d.next.next.number;
                     temp = d.next.next.next;
                     d.next = temp;
-                    d.number = answer;\
+                    d.number = answer;
+                }
+                else
+                {
                     d = d.next;
                 }
-
-                
             }
         }
 
@@ -261,8 +262,11 @@ namespace Calculator1
                     temp = a.next.next.next;
                     a.next = temp;
                     a.number = answer;
+                }
+                else
+                {
                     a = a.next;
-                } 
+                }
             }
         }
 
@@ -279,30 +283,33 @@ namespace Calculator1
                     temp = s.next.next.next;
                     s.next = temp;
                     s.number = answer;
+                }
+                else
+                {
                     s = s.next;
-                }   
+                }
             }
         }
 
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             char p = e.KeyChar;
-            if(p == '1' || p == '2' || p == '3' || p == '4' || p == '5' || p == '6' || p == '7' || p == '8' || p == '9' || p == '0')
+            if (p == '1' || p == '2' || p == '3' || p == '4' || p == '5' || p == '6' || p == '7' || p == '8' || p == '9' || p == '0')
             {
-                if(txtCurrent.Text == "ERROR")
+                if (txtCurrent.Text == "ERROR")
                 {
                     txtCurrent.Clear();
                 }
                 txtCurrent.Text = txtCurrent.Text + p;
             }
-            else if(p == '+' || p == '-' || p == '/' || p == '*')
+            else if (p == '+' || p == '-' || p == '/' || p == '*')
             {
                 string s = "" + p;
                 AddToList(s);
                 PrintList();
                 txtCurrent.Clear();
             }
-            else if(p == (char)Keys.Enter)
+            else if (p == (char)Keys.Enter)
             {
                 AddToList("=");
                 PrintList();
@@ -310,8 +317,7 @@ namespace Calculator1
                 double answer = Calculate();
                 txtCurrent.Text = "" + answer;
             }
-            }
         }
     }     
-    
-}
+ }   
+
